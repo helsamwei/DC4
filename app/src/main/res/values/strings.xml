@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Sampling</string>
+
+    <string name="head_line">Indoor Data Collect Application</string>
+
+    <string name="second_line">WiFi/BLE scan frequency is 2Hz,IMU scan frequency is 50Hz</string>
+
+    <string name="STATIC_SCAN">Static Scan</string>
+
+    <string name="DYNAMIC_SCAN">Dynamic Scan</string>
+</resources>
