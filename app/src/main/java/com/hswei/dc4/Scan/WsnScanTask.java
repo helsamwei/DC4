@@ -30,6 +30,9 @@ public class WsnScanTask extends TimerTask {
         mTimer = timer;
     }
 
+    public WsnScanTask() {
+    }
+
     @Override
     public void run() {
         countNum++;
@@ -64,15 +67,17 @@ public class WsnScanTask extends TimerTask {
                     StaticscanFragment.Clock.stop();
                     StaticscanFragment.dialog.dismiss();
                     new SavaDataAsyn(MainActivity.mainActivity).execute();
+//                    Scan.getInstance().stopScan();
                 }
                 break;
             case 2:
                 if(DynamicscanFragment.isFinished){
-                    mTimer.cancel();
+//                    mTimer.cancel();
                     BleUtil.getInstance().stopScan();
                     bleScanList.clear();
                     DynamicscanFragment.Clock.stop();
                     new SavaDataAsyn(MainActivity.mainActivity).execute();
+//                    Scan.getInstance().stopScan();
                 }
                 break;
         }

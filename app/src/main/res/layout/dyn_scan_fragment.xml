@@ -1,76 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#B5A8CD"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/bg_2"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:scaleType="center"
-        android:text="@string/head_line"
-        android:textSize="25dp"
-        android:textAlignment="center"
-        android:textColor="#E06421"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="10dp"
         android:text="@string/DYNAMIC_SCAN"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:textColor="#ff0a98"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="110dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:text="@string/second_line"
-        android:textColor="#3D128D"
-        android:textAlignment="center"/>
+        android:textColor="@color/colorAccent"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Device:"
+            android:text="@string/dev"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:textColor="#1E65E9"
+            android:textSize="20sp"
+            android:textColor="@color/black"
             android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="120dp"
-            android:layout_height="35dp"
-            android:background="#FFFFFF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhilte"
             android:id="@+id/dev_dyn"
             android:layout_weight="4"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Head:"
+            android:text="@string/head"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:textColor="#1E65E9"
+            android:textSize="20sp"
+            android:textColor="@color/black"
             android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="120dp"
-            android:layout_height="35dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF"
             android:id="@+id/head_dyn"
             android:layout_weight="4"/>
@@ -80,69 +64,69 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="X:"
+            android:text="@string/x"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textColor="#1E65E9"
+            android:textColor="@color/black"
             android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:background="#FFFFFF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhilte"
             android:id="@+id/inputX_dyn"
             android:layout_weight="4"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="m"
+            android:text="@string/m"
             android:textSize="15sp"
-            android:textColor="#ff0a8d"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Y:"
+            android:text="@string/y"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textColor="#1E65E9"
+            android:textColor="@color/black"
             android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:background="#FFFFFF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhilte"
             android:id="@+id/inputY_dyn"
             android:layout_weight="4"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="m"
+            android:text="@string/m"
             android:textSize="15sp"
-            android:textColor="#ff0a8d"/>
+            android:textColor="@color/colorWhilte"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Z:"
+            android:text="@string/z"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:textColor="#1E65E9"
+            android:textSize="20sp"
+            android:textColor="@color/black"
             android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="80dp"
-            android:layout_height="35dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF"
             android:id="@+id/inputZ_dyn"
             android:layout_weight="4"/>
@@ -150,38 +134,49 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="m"
+            android:text="@string/m"
             android:textSize="15sp"
-            android:textColor="#ff0a8d"/>
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="130dp"
-        android:layout_marginStart="100dp"
-        android:id="@+id/btn_start_dyn"
-        android:src="@mipmap/button_start"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/colorWhilte"/>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="130dp"
-        android:layout_marginStart="200dp"
-        android:src="@mipmap/button_settings"
-        android:id="@+id/setting_dyn"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:id="@+id/btn_start_dyn"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/btn_start"
+            android:scaleType="fitCenter"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/bt_trans"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:id="@+id/setting_dyn" />
+    </LinearLayout>
+
+
 
     <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/clock_dyn"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
         android:textSize="30sp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
 
-</RelativeLayout>
+</LinearLayout>

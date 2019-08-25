@@ -2,7 +2,6 @@ package com.hswei.dc4.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -16,8 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.hswei.dc4.ScanService.ImuScanService;
-import com.hswei.dc4.ScanService.WsnScanService;
+import com.hswei.dc4.Scan.Scan;
 import com.hswei.dc4.MainActivity;
 import com.hswei.dc4.R;
 import com.hswei.dc4.Utils.ScanResultUtil;
@@ -28,7 +26,6 @@ public class DynamicscanFragment extends Fragment {
     private EditText Dev,Head,inputX,inputY,inputZ;
     public static Chronometer Clock;
     private ImageView Start,Setting;
-    public static DynamicscanFragment dynamicscanFragment;
     public AlertDialog.Builder dialog;
     private int SCAN_DYNAMIC = 2;
     public static boolean isFinished = false;
@@ -58,13 +55,9 @@ public class DynamicscanFragment extends Fragment {
                     ScanResultUtil.x = Float.parseFloat(inputX.getText().toString());
                     ScanResultUtil.y = Float.parseFloat(inputY.getText().toString());
                     ScanResultUtil.z = Float.parseFloat(inputZ.getText().toString());
-
-                    Intent wsnScanIntent = new Intent(MainActivity.mainActivity, WsnScanService.class);
-                    MainActivity.mainActivity.startService(wsnScanIntent);
-
-                    Intent sensorScanIntent = new Intent(MainActivity.mainActivity, ImuScanService.class);
-                    MainActivity.mainActivity.startService(sensorScanIntent);
-
+                    Scan.getInstance().init(MainActivity.mainActivity);
+                    Scan.getInstance().startWsnScan();
+                    Scan.getInstance().startImuScan();
                 }else{
                     Toast.makeText(MainActivity.mainActivity,"Please finish the parameters setting！！",Toast.LENGTH_LONG).show();
                 }
@@ -74,7 +67,7 @@ public class DynamicscanFragment extends Fragment {
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScreenControllerUtil.getInstance().openScreen(ScreenControllerUtil.Screen.STATIC_SCAN);
+                ScreenControllerUtil.getInstance().loadScreen(ScreenControllerUtil.Screen.STATIC_SCAN);
             }
         });
 

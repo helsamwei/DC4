@@ -8,4 +8,20 @@
     <string name="STATIC_SCAN">Static Scan</string>
 
     <string name="DYNAMIC_SCAN">Dynamic Scan</string>
+
+    <string name="dur">Duration:</string>
+
+    <string name="min">min</string>
+
+    <string name="dev">Device:</string>
+
+    <string name="head">Head:</string>
+
+    <string name="x">X:</string>
+
+    <string name="y">Y:</string>
+
+    <string name="z">Z:</string>
+
+    <string name="m">m</string>
 </resources>

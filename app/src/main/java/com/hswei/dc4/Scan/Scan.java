@@ -8,6 +8,8 @@ import com.hswei.dc4.Utils.ScanResultUtil;
 import com.hswei.dc4.Utils.WifiUtil;
 
 import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class Scan {
 
@@ -17,6 +19,7 @@ public class Scan {
     private int wsnFrq = 2;
     private int sensorFrq = 50;
     private Context mContext;
+    private ScheduledExecutorService scheduledThreadPool;
 
     private static final Scan ourInstance = new Scan();
 
@@ -32,21 +35,26 @@ public class Scan {
         WifiUtil.attachContext(context);
         mContext = context;
         ScanResultUtil.getInstance().setLength0();
+        scheduledThreadPool = Executors.newScheduledThreadPool(5);
     }
 
     public void startWsnScan(){
         //start WSN scan
         int wsnTimeindex = 1000/wsnFrq;
-        Timer wsnTimer = new Timer();
-        WsnScanTask wsnTimerTask = new WsnScanTask(wsnTimer);
+        wsnTimer = new Timer();
+        wsnTimerTask = new WsnScanTask(wsnTimer);
         wsnTimer.scheduleAtFixedRate(wsnTimerTask,0,wsnTimeindex);
     }
 
     public void startImuScan(){
         int sensorTimerindex = 1000/sensorFrq;
         ImuUtil.getInstance().registerSensor(mContext);
-        Timer sensorTimer = new Timer();
-        ImuScanTask sensorTimerTask = new ImuScanTask(sensorTimer);
+        sensorTimer = new Timer();
+        sensorTimerTask = new ImuScanTask(sensorTimer);
         sensorTimer.scheduleAtFixedRate(sensorTimerTask,0,sensorTimerindex);
+    }
+
+    public void stopScan(){
+        scheduledThreadPool.shutdownNow();
     }
 }

@@ -21,6 +21,9 @@ public class ImuScanTask extends TimerTask {
         mTimer = timer;
     }
 
+    public ImuScanTask() {
+    }
+
     @Override
     public void run() {
         countNum++;
@@ -31,11 +34,13 @@ public class ImuScanTask extends TimerTask {
             case 1:
                 if(countNum>=ScanResultUtil.dur*50*60){
                     mTimer.cancel();
+//                    Scan.getInstance().stopScan();
                 }
                 break;
             case 2:
                 if(DynamicscanFragment.isFinished){
                     mTimer.cancel();
+//                    Scan.getInstance().stopScan();
                 }
                 break;
         }

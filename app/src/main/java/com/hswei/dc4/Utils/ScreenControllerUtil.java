@@ -9,8 +9,15 @@ import com.hswei.dc4.Fragment.StaticscanFragment;
 import com.hswei.dc4.MainActivity;
 import com.hswei.dc4.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class ScreenControllerUtil {
     private FragmentManager mFragmentManager;
+    private static StaticscanFragment mStaticscanFragment;
+    private static DynamicscanFragment mDynamicscanFragment;
+    private static HashMap<String,Fragment> FragmentList = new HashMap<>();
 
     private static final ScreenControllerUtil ourInstance=new ScreenControllerUtil();
 
@@ -28,7 +35,14 @@ public class ScreenControllerUtil {
 
     public void openScreen(Screen screen){
         mFragmentManager = MainActivity.mainActivity.getSupportFragmentManager();
+        mStaticscanFragment = new StaticscanFragment();
+        mDynamicscanFragment = new DynamicscanFragment();
+        FragmentList.put("Sta",mStaticscanFragment);
+        FragmentList.put("Dyn",mDynamicscanFragment);
+        loadScreen(screen);
+    }
 
+    public void loadScreen(Screen screen) {
         Fragment fragment = getFragment(screen);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container,fragment);
@@ -38,9 +52,15 @@ public class ScreenControllerUtil {
     private Fragment getFragment(Screen screen) {
         switch(screen){
             case STATIC_SCAN:
-                return new StaticscanFragment();
+                if(FragmentList.get("Sta")==null){
+                    FragmentList.put("Sta",new StaticscanFragment());
+                }
+                return FragmentList.get("Sta");
             case DYNAMIC_SCAN:
-                return new DynamicscanFragment();
+                if(FragmentList.get("Dyn") == null){
+                    FragmentList.put("Dyn",new DynamicscanFragment());
+                }
+                return FragmentList.get("Dyn");
             default:
                 break;
         }

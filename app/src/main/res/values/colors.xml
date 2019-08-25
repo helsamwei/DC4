@@ -3,5 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="coloeWhilte">#FFFFFF</color>
+    <color name="colorWhilte">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="def_black">#B4B1B1</color>
+    <color name="orange">#E06421</color>
+    <color name="purple">#3D128D</color>
+    <color name="bg_1">#7BE1C3</color>
+    <color name="bg_2">#E7ECA2</color>
+    <color name="transparent">#00000000</color>
 </resources>

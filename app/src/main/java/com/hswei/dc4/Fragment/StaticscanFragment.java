@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.hswei.dc4.Adapter.RefPointAdapter;
+import com.hswei.dc4.Scan.Scan;
 import com.hswei.dc4.ScanService.ImuScanService;
 import com.hswei.dc4.ScanService.WsnScanService;
 import com.hswei.dc4.MainActivity;
@@ -22,13 +28,21 @@ import com.hswei.dc4.R;
 import com.hswei.dc4.Utils.ScanResultUtil;
 import com.hswei.dc4.Utils.ScreenControllerUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StaticscanFragment extends Fragment {
 
     private EditText Dur,Dev,Head,inputX,inputY,inputZ;
+    private RecyclerView mRecView;
     public static Chronometer Clock;
     private ImageView Start,Setting;
     public static ProgressDialog dialog;
     private int SCAN_STATIC = 1;
+    private LinearLayoutManager mLinearLayoutManager;
+    private List<String> mData = new ArrayList<>();
+    RefPointAdapter adapter;
+    String data;
 
     @Nullable
     @Override
@@ -42,6 +56,10 @@ public class StaticscanFragment extends Fragment {
         inputZ = view.findViewById(R.id.inputZ);
         Clock = view.findViewById(R.id.clock);
         Start = view.findViewById(R.id.btn_start);
+        mRecView = view.findViewById(R.id.recView);
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
+        initAdapter();
+
         Start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,12 +75,12 @@ public class StaticscanFragment extends Fragment {
                     ScanResultUtil.x = Float.parseFloat(inputX.getText().toString());
                     ScanResultUtil.y = Float.parseFloat(inputY.getText().toString());
                     ScanResultUtil.z = Float.parseFloat(inputZ.getText().toString());
-
-                    Intent wsnScanIntent = new Intent(MainActivity.mainActivity, WsnScanService.class);
-                    MainActivity.mainActivity.startService(wsnScanIntent);
-
-                    Intent sensorScanIntent = new Intent(MainActivity.mainActivity, ImuScanService.class);
-                    MainActivity.mainActivity.startService(sensorScanIntent);
+                    data = "RP:("+inputX.getText().toString()+","+inputY.getText().toString()+
+                            ","+inputZ.getText().toString()+")";
+                    adapter.addData(data);
+                    Scan.getInstance().init(MainActivity.mainActivity);
+                    Scan.getInstance().startWsnScan();
+                    Scan.getInstance().startImuScan();
 
                 }else{
                     Toast.makeText(MainActivity.mainActivity,"Please finish the parameters setting！",Toast.LENGTH_LONG).show();
@@ -73,11 +91,20 @@ public class StaticscanFragment extends Fragment {
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScreenControllerUtil.getInstance().openScreen(ScreenControllerUtil.Screen.DYNAMIC_SCAN);
+                ScreenControllerUtil.getInstance().loadScreen(ScreenControllerUtil.Screen.DYNAMIC_SCAN);
             }
         });
 
         return view;
+    }
+
+
+
+    private void initAdapter() {
+        mRecView.setLayoutManager(mLinearLayoutManager);
+        adapter = new RefPointAdapter(mData);
+
+        mRecView.setAdapter(adapter);
     }
 
     private boolean isInputCompleted(){
